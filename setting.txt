@@ -1,10 +1,3 @@
-Docker
-참고자료
-http://www.pyrasis.com/docker.html
-https://docs.docker.com/engine/reference/commandline/cli/
-https://www.slideshare.net/pyrasis/docker-fordummies-44424016
-
-
 Docker 설치
 공식문서 ⇒ https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
@@ -154,3 +147,171 @@ golang              1.9                 ef89ef5c42a9        10 months ago       
 root@server:~/docker# 
 
 root@server:~/docker# docker container run -p 9000:8080 -d example/echo:latest 
+
+
+
+nginx 를 베이스 이미지로 하는 웹 서버를 컨테이너로 실행합니다. 
+index.html 파일에 자신의 이름을 입력한 후 , … 옆 사람이 해당 페이지를 브라우저를 통해서 확인할 수 있도록 하세요.
+
+
+
+
+
+특정 이름의 컨테이너를 조회
+# docker container ls -a --filter="name=ooo"
+
+특정 이름의 컨테이너를 삭제
+# docker container rm -f $(docker container ls -aq --filter="name=ooo")
+
+특정 이름의 컨테이너를 삭제하고 해당 이름의 컨테이너를 실행
+# docker container rm -f $(docker container ls -aq --filter="name=ooo") ; docker container run --name ooo IMAGE_NAME
+
+
+실행 또는 중지 상태의 컨테이너를 모두 강제로 삭제
+root@server:~/docker# docker container rm -f $(docker container ls -aq) 
+29cd243bb33c
+66b6112733b4
+e10ea0c688f3
+32683e31e079
+29d29572f740
+f9bb7667c03d
+72b9949c3057
+1cd8f43f4128
+ccc776c9e24d
+
+모든 이미지를 삭제
+root@server:~/docker# docker image rm $(docker image ls -aq)
+Untagged: echo:latest
+Deleted: sha256:8a71248c27719d450f3931e9524ae920c6f9fca840fbdbb536fdedbe6202fe1c
+Deleted: sha256:e74b9cbe029e9ef4b937056854d8682e622687989f51e3c9ed0f5bb8bc06a3a5
+Deleted: sha256:62f3625e07d45e3b022703d5922774bb40276bec6ab77ad0d80bd11dddaf6a84
+Deleted: sha256:b9fd23c7d96cc642ba6fd28cd1d8f2f194cf8954aa813d1c743c75b347beca24
+Deleted: sha256:ebd9e9cc06fb0276cd66f50d8930430f2f790e400b4dd32cd8a0d6ee3cbc6fc9
+Untagged: mongo:latest
+Untagged: mongo@sha256:93bd5412f16f3b9f7e12eb94813087f195dad950807a8ca74aa2db080c203990
+Deleted: sha256:0fb47b43df1987480928787d3907f3be50941506ede82298b920df07011b8d94
+Deleted: sha256:603c757ca3827d6ceadbfefe473120a59c4c4cf81face24ae34603ddb196ef8c
+Deleted: sha256:7c395d60580ec95a137880c06b1f2d74ea4f36f50ddd91e718223a27ffae1b00
+Deleted: sha256:2b27eee3d8672a13f05ffe250c8de1643fa31f3e26f3c5f5b4bf96f2dcfd0ca2
+Deleted: sha256:fb782f3494942d520e82f4889b30ca1a722fb546a4d7a74adbae967d35ea2dd4
+Deleted: sha256:aeeb13954eec529e09c0fa877bb30bf3975599594c87ce465c72c0b76cbf90a9
+Deleted: sha256:3fd8c9f3d1c8b52d3fc47c4710556633056b7b306b0abdb5c14501e2644e3790
+Deleted: sha256:e7bcc2a3fe764a425c8485756e7752a89e029fbf60db34bb9706e9abd31c2638
+Deleted: sha256:3ee85fbb05b9c35a5963dfccd752520d7735d08467322f97b91266d124bcbc2e
+Deleted: sha256:fd85a4e7f6b58ba7acc3dccce68d1acd2992830bdcf176b06c0813a9349fd85e
+Deleted: sha256:5bcad8f8b858991e09c1ea59d2b1d8a1fcb424445493825972918b48c5170289
+Deleted: sha256:9adaba72eca85f66961ee4fb5c0b646b078377439690fa94827bf35a5f0cfd5e
+Deleted: sha256:ccab9ec9909359830f26cd442a80b08ab27a8fd34881495da7a17ac224ceebf1
+Deleted: sha256:739482a9723dbee6dbdad6b669090e96d5f57e2aa27c131015cce8969d0d4efa
+Untagged: ubuntu:latest
+Untagged: ubuntu@sha256:f08638ec7ddc90065187e7eabdfac3c96e5ff0f6b2f1762cf31a4f49b53000a5
+Deleted: sha256:7698f282e5242af2b9d2291458d4e425c75b25b0008c1e058d66b717b4c06fa9
+Deleted: sha256:027b23fdf3957673017df55aa29d754121aee8a7ed5cc2898856f898e9220d2c
+Deleted: sha256:0dfbdc7dee936a74958b05bc62776d5310abb129cfde4302b7bcdf0392561496
+Deleted: sha256:02571d034293cb241c078d7ecbf7a84b83a5df2508f11a91de26ec38eb6122f1
+Untagged: nginx:latest
+Untagged: nginx@sha256:23b4dcdf0d34d4a129755fc6f52e1c6e23bb34ea011b315d87e193033bcd1b68
+Deleted: sha256:53f3fd8007f76bd23bf663ad5f5009c8941f63828ae458cef584b5f85dc0a7bf
+Deleted: sha256:50183b8336fcc9552a55c86895cdfdfb6f1bb349a951da638f22f645ce235926
+Deleted: sha256:093a0ead7cedbef266292a1b08e478489ed6584170f0d82127c5ac9a10fd8303
+Deleted: sha256:6270adb5794c6987109e54af00ab456977c5d5cc6f1bc52c1ce58d32ec0f15f4
+Untagged: golang:1.9
+Untagged: golang@sha256:8b5968585131604a92af02f5690713efadf029cc8dad53f79280b87a80eb1354
+Deleted: sha256:ef89ef5c42a90ec98bda7bbef0495c1ca6f43a31d059148c368b71858de463d2
+Deleted: sha256:17390723275513e7505aae3369480402f214a8114cac79966639cbc7ed14f7e6
+Deleted: sha256:d676491c2e24f03e941c718c3eca48ef400a6e801b20ee6519d5e064b2afcfa6
+Deleted: sha256:14027861f16bb2c874c1212e8969e90e70e32b8d31e59db69048308596f841d1
+Deleted: sha256:549d1efa00654bcaa5e91e449192ad71557b694bf8a810c4b8d9df0246a00164
+Deleted: sha256:2d9c829ae3f7ff3e148e5c7c3a1cf378b0f90b79035e2fe9a8d78c63ccde4c89
+Deleted: sha256:b1ae7168c6f3e061aa3943740ec3ceaf8e582dc65feab31d2b56d464a5062d59
+Deleted: sha256:4a495dbc04bd205c728297a08cf203988e91caeafe4b21fcad94c893a53d96dc
+Deleted: sha256:3b10514a95bec77489a57d6e2fbfddb7ddfdb643907470ce5de0f1b05c603706
+Error response from daemon: conflict: unable to delete e74b9cbe029e (cannot be forced) - image has dependent child images
+Error response from daemon: No such image: b9fd23c7d96c:latest
+root@server:~/docker# 
+
+
+
+현재 작업 위치와 Dockerfile 내용 확인
+root@server:~/docker# pwd
+/root/docker
+root@server:~/docker# cat Dockerfile 
+FROM golang:1.9
+
+RUN mkdir /echo
+
+COPY main.go /echo
+
+CMD [ "go", "run", "/echo/main.go" ]
+
+
+echo라는 이름의 도커 이미지 생성
+root@server:~/docker# docker build -t echo .
+Sending build context to Docker daemon  6.144kB
+Step 1/4 : FROM golang:1.9
+1.9: Pulling from library/golang
+55cbf04beb70: Pull complete 
+1607093a898c: Pull complete 
+9a8ea045c926: Pull complete 
+d4eee24d4dac: Pull complete 
+9c35c9787a2f: Pull complete 
+8b376bbb244f: Pull complete 
+0d4eafcc732a: Pull complete 
+186b06a99029: Pull complete 
+Digest: sha256:8b5968585131604a92af02f5690713efadf029cc8dad53f79280b87a80eb1354
+Status: Downloaded newer image for golang:1.9
+ ---> ef89ef5c42a9
+Step 2/4 : RUN mkdir /echo
+ ---> Running in 58abad46c173
+ ---> b366997113c5
+Removing intermediate container 58abad46c173
+Step 3/4 : COPY main.go /echo
+ ---> a7707dc915ce
+Removing intermediate container 9ce9c9e05285
+Step 4/4 : CMD go run /echo/main.go
+ ---> Running in d321b29ef114
+ ---> bbdd71d4e499
+Removing intermediate container d321b29ef114
+Successfully built bbdd71d4e499
+Successfully tagged echo:latest
+
+호스트의 9090 포트를 컨테이너의 8080 포트로 맵핑해서 컨테이너를 실행
+root@server:~/docker# docker container run -p 9090:8080 -d echo
+4daae1153e8f1959a6db7b6b94b4ba65f60d002c55d2514852060348b1949155
+
+컨테이너 상태를 확인 (실행 여부)
+root@server:~/docker# docker container ps 
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+4daae1153e8f        echo                "go run /echo/main.go"   13 seconds ago      Up 12 seconds       0.0.0.0:9090->8080/tcp   amazing_snyder
+
+컨테이너에 서비스를 요청
+root@server:~/docker# curl http://localhost:9090
+Hello Docker ^^ !!!
+
+
+컨테이너에 파일을 가져와서 수정 후 재실행
+컨테이너의 /echo/main.go 파일을 호스트의 ./main2.go 파일로 복사
+root@server:~/docker# docker container cp 4da:/echo/main.go ./main2.go
+root@server:~/docker# ls main2.go
+main2.go
+
+호스트에서 ./main2.go 파일의 내용을 수정
+root@server:~/docker# gedit main2.go
+호스트의 ./main2.go 파일을 컨테이너의 /echo/main.go 파일로 복사
+root@server:~/docker# docker container cp ./main2.go 4da:/echo/main.go
+
+컨테이너가 재실행되지 않았으므로 변경된 내용이 반영되지 않았음
+root@server:~/docker# curl http://localhost:9090
+Hello Docker ^^ !!!root@server:~/docker# 
+
+컨테이너의 실행을 중지하고 재실행
+root@server:~/docker# docker container stop 4da
+4da
+root@server:~/docker# docker container start 4da
+4da
+
+수정한 내용이 반영된 것을 확인
+root@server:~/docker# curl http://localhost:9090
+안녕 도커 !!!root@server:~/docker# 
+
+
